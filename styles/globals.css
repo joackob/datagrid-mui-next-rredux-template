@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap");
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --color-primario: #b13a07;
+  --color-secundario: #eed3c4;
+  --color-terciario: #fcf9f4;
+  --color-gris-claro: #f3f4f6;
+  --color-gris-oscuro: #707070;
+
+  --color-fondo-oscuro: #3e3e3e;
+  --color-fondo-claro: #f3f4f6;
+
+  /* --color-fuente-gris: #3e3e3e; */
+  --color-fuente-gris: #666666;
+  --color-fuente-gris-oscuro: #3e3e3e;
+
+  --fuente-logotipo: "Nanum Gothic", sans-serif;
+}
+
+.link.link-variant-primary {
+  color: var(--color-primario);
+}
+
+.background-dark {
+  background-color: var(--color-gris-claro);
+}
+
+.background-light {
+  background-color: #ffffff;
+}
+
+.button.contained {
+  background-color: var(--color-primario);
+  color: white;
+  border-radius: 50px;
+}
+
+.button.contained:hover {
+  background-color: var(--color-primario);
+}
+
+.button.button-text {
+  color: var(--color-primario);
+  font-weight: bold;
+}
+
+.title {
+  font-weight: bold;
+  color: var(--color-fuente-gris-oscuro);
+}
+
+.subtitle {
+  color: var(--color-fuente-gris);
+}
+
+/* layout */
+
+.d-mobile {
+  display: block;
+}
+
+.d-tablet {
+  display: none;
+}
+
+.d-desktop {
+  display: none;
+}
+
+.d-mobile.d-tablet {
+  display: block;
+}
+
+@media screen and (min-width: 600px) and (max-width: 900px) {
+  .d-tablet {
+    display: block;
+  }
+
+  .d-mobile {
+    display: none;
+  }
+
+  .d-mobile.d-tablet {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 901px) {
+  .d-mobile.d-tablet {
+    display: none;
+  }
+  .d-tablet {
+    display: none;
+  }
+
+  .d-mobile {
+    display: none;
+  }
+
+  .d-desktop {
+    display: block;
+  }
+}
