@@ -27,7 +27,7 @@ const MackoIcon = ({
         fontWeight: "lighter",
       }}
     >
-      M
+      DG
     </h3>
   </div>
 );

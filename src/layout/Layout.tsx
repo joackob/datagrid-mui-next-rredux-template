@@ -58,14 +58,10 @@ const Layout = ({ children }: { children: ReactNode }) => {
           href="/favicon-16x16.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
-        <meta name="msapplication-TileColor" content="#da532c" />
+        <meta name="msapplication-TileColor" content="#7e56c1" />
         <meta name="theme-color" content="#ffffff" />
-        <title>Macko - Servicios web</title>
-        <meta
-          name="description"
-          content="Macko - Servicios web especializados en la indumentaria"
-        />
+        <title>DataGrid con Material UI</title>
+        <meta name="description" content="DataGrid con Material UI" />
       </Head>
 
       <Box display={"flex"} flexDirection="column" minHeight="100vh">

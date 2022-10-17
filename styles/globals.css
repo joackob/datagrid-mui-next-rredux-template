@@ -18,9 +18,9 @@ a {
 }
 
 :root {
-  --color-primario: #b13a07;
-  --color-secundario: #eed3c4;
-  --color-terciario: #fcf9f4;
+  --color-primario: #7e56c1;
+  --color-secundario: #b084f4;
+  --color-terciario: #4d2b90;
   --color-gris-claro: #f3f4f6;
   --color-gris-oscuro: #707070;
 
@@ -68,53 +68,4 @@ a {
 
 .subtitle {
   color: var(--color-fuente-gris);
-}
-
-/* layout */
-
-.d-mobile {
-  display: block;
-}
-
-.d-tablet {
-  display: none;
-}
-
-.d-desktop {
-  display: none;
-}
-
-.d-mobile.d-tablet {
-  display: block;
-}
-
-@media screen and (min-width: 600px) and (max-width: 900px) {
-  .d-tablet {
-    display: block;
-  }
-
-  .d-mobile {
-    display: none;
-  }
-
-  .d-mobile.d-tablet {
-    display: block;
-  }
-}
-
-@media screen and (min-width: 901px) {
-  .d-mobile.d-tablet {
-    display: none;
-  }
-  .d-tablet {
-    display: none;
-  }
-
-  .d-mobile {
-    display: none;
-  }
-
-  .d-desktop {
-    display: block;
-  }
 }

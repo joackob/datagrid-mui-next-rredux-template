@@ -13,7 +13,7 @@ Procurar tener actualizado `node.js` a la versión `lts`. Si desea asegurarse, p
 
 - En windows, desde la [pagina oficial](https://nodejs.org/en/), descargando y ejecutando la versión `lts`.
 
-- En Linux, a través de [nvm](https://github.com/nvm-sh/nvm) 
+- En Linux, a través de [nvm](https://github.com/nvm-sh/nvm)
 
   - Abrir una terminal y ejecutar el comando que se encuentra en la sección [Install & update script](https://github.com/nvm-sh/nvm#install--update-script)
 
@@ -22,7 +22,6 @@ Procurar tener actualizado `node.js` a la versión `lts`. Si desea asegurarse, p
     ```bash
     nvm install --lts
     ```
-
 
 ## Instalación y ejecución
 
@@ -36,9 +35,4 @@ Procurar tener actualizado `node.js` a la versión `lts`. Si desea asegurarse, p
 - [TypeScript](https://www.typescriptlang.org/)
 - [NextJS](https://nextjs.org/)
 - [Material UI](https://mui.com/core/)
-
-## Artículos y ejemplos  tomados en cuenta para el desarrollo del template
-
-- [Dependency Injection with NextJS and TypeScript](https://himynameistim.com/blog/dependency-injection-with-nextjs-and-typescript)
-- [Testing in NextJS](https://nextjs.org/docs/testing)
-- [Example Next + Jest](https://github.com/vercel/next.js/tree/canary/examples/with-jest)
+- [Favicon.io](https://favicon.io/)
