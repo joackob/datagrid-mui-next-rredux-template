@@ -5,7 +5,6 @@ import {
   GridCellEditCommitParams,
   GridColDef,
   GridRowId,
-  GridRowParams,
   GridSelectionModel,
   GridValueGetterParams,
 } from "@mui/x-data-grid";
@@ -47,7 +46,7 @@ interface IRow {
 }
 
 const Home = () => {
-  const [rowsSelect, setRowsSelect] = useState<GridRowId[]>([]);
+  const [rowsSelected, setRowsSelected] = useState<GridRowId[]>([]);
   const [rows, setRows] = useState<IRow[]>([
     { id: uuid(), lastName: "Snow", firstName: "Jon", age: 35 },
     { id: uuid(), lastName: "Lannister", firstName: "Cersei", age: 42 },
@@ -61,7 +60,7 @@ const Home = () => {
   ]);
 
   const handleDeleteButton = () => {
-    setRows(rows.filter((row) => !rowsSelect.includes(row.id)));
+    setRows(rows.filter((row) => !rowsSelected.includes(row.id)));
   };
 
   const handleAddButton = () => {
@@ -71,6 +70,14 @@ const Home = () => {
       firstName: "",
     };
     setRows([data, ...rows]);
+  };
+
+  const handleEditRow = (params: GridCellEditCommitParams) => {
+    console.log(params.id, params.field, params.value);
+  };
+
+  const handleSelectRow = (selectionModel: GridSelectionModel) => {
+    setRowsSelected(selectionModel);
   };
 
   return (
@@ -96,13 +103,8 @@ const Home = () => {
         autoHeight
         checkboxSelection
         density="comfortable"
-        onCellEditCommit={(params: GridCellEditCommitParams) =>
-          console.log(params.id, params.field, params.value)
-        }
-        onRowClick={(params: GridRowParams) => console.log(params)}
-        onSelectionModelChange={(selectionModel: GridSelectionModel) =>
-          setRowsSelect(selectionModel)
-        }
+        onCellEditCommit={handleEditRow}
+        onSelectionModelChange={handleSelectRow}
       />
     </Container>
   );
