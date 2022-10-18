@@ -40,13 +40,12 @@ const columns: GridColDef[] = [
 
 interface IRow {
   id: string;
-  lastName?: string;
-  firstName?: string;
-  age?: number;
+  lastName: string;
+  firstName: string;
+  age: number;
 }
 
 const Home = () => {
-  const [rowsSelected, setRowsSelected] = useState<GridRowId[]>([]);
   const [rows, setRows] = useState<IRow[]>([
     { id: uuid(), lastName: "Snow", firstName: "Jon", age: 35 },
     { id: uuid(), lastName: "Lannister", firstName: "Cersei", age: 42 },
@@ -58,13 +57,6 @@ const Home = () => {
     { id: uuid(), lastName: "Frances", firstName: "Rossini", age: 36 },
     { id: uuid(), lastName: "Roxie", firstName: "Harvey", age: 65 },
   ]);
-
-  const handleDeleteButton = () => {
-    const confirmDelete = confirm("Are you sure?");
-    if (confirmDelete) {
-      setRows(rows.filter((row) => !rowsSelected.includes(row.id)));
-    }
-  };
 
   const handleAddButton = () => {
     const firstname = prompt("nombre?", "");
@@ -87,8 +79,17 @@ const Home = () => {
     console.log(params.id, params.field, params.value);
   };
 
+  const [rowsSelected, setRowsSelected] = useState<GridRowId[]>([]);
+
   const handleSelectRow = (selectionModel: GridSelectionModel) => {
     setRowsSelected(selectionModel);
+  };
+
+  const handleDeleteButton = () => {
+    const confirmDelete = confirm("Are you sure?");
+    if (confirmDelete) {
+      setRows(rows.filter((row) => !rowsSelected.includes(row.id)));
+    }
   };
 
   return (
