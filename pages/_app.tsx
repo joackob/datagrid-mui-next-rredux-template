@@ -6,14 +6,17 @@ import "@fontsource/roboto/700.css";
 import type { AppProps } from "next/app";
 import Layout from "../src/layout/Layout";
 import { CssBaseline } from "@mui/material";
+import FormAddProvider from "../src/providers/FormAddProvider";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <CssBaseline />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <FormAddProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </FormAddProvider>
     </>
   );
 }

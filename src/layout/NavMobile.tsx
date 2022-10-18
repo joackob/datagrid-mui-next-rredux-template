@@ -4,6 +4,7 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
+  Container,
   Divider,
   Link,
   Menu,
@@ -13,7 +14,7 @@ import {
 } from "@mui/material";
 import { ReactNode, useState } from "react";
 import { MouseEvent } from "react";
-import MackoIcon from "../components/MackoIcon";
+import MackoIcon from "../components/IconNavBar";
 
 const NavMobile = ({
   linksLeft,
@@ -33,9 +34,9 @@ const NavMobile = ({
   };
 
   return (
-    <Box height="100%" width="100%">
-      <AppBar position="fixed">
-        <Toolbar sx={{ backgroundColor: "var(--color-primario)" }}>
+    <AppBar sx={{ backgroundColor: "var(--color-primario)" }}>
+      <Container>
+        <Toolbar>
           <Link href="/" flexGrow={1} underline="none" color="inherit">
             <MackoIcon withBorder versionSimple={false} />
           </Link>
@@ -88,8 +89,8 @@ const NavMobile = ({
             </MenuItem>
           ))}
         </Menu>
-      </AppBar>
-    </Box>
+      </Container>
+    </AppBar>
   );
 };
 

@@ -66,25 +66,16 @@ const Layout = ({ children }: { children: ReactNode }) => {
 
       <Box display={"flex"} flexDirection="column" minHeight="100vh">
         <Box
-          display={{
-            xs: "none",
-            md: "block",
-          }}
-        >
-          <NavDesktop linksLeft={linksLeft} linksRight={linksRight} />
-        </Box>
-
-        <Box
-          display={{
-            xs: "block",
-            md: "none",
+          height={{
+            xs: 56,
+            sm: 64,
           }}
         >
           <NavMobile linksLeft={linksLeft} linksRight={linksRight} />
         </Box>
 
         <Box flexGrow={1}>{children}</Box>
-        <Box height={"8vh"} className="background-dark" />
+        <Box height={64} className="background-dark" />
       </Box>
     </Fragment>
   );

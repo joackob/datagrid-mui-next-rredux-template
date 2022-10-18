@@ -1,4 +1,4 @@
-const MackoIcon = ({
+const IconNavBar = ({
   versionSimple,
   withBorder,
   className,
@@ -32,4 +32,4 @@ const MackoIcon = ({
   </div>
 );
 
-export default MackoIcon;
+export default IconNavBar;

@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import { ReactNode } from "react";
-import MackoIcon from "../components/MackoIcon";
+import MackoIcon from "../components/IconNavBar";
 
 const Separador = ({ simbolo }: { simbolo: string }) => (
   <span
