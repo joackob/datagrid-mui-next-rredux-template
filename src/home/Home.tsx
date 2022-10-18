@@ -40,8 +40,8 @@ const columns: GridColDef[] = [
 
 interface IRow {
   id: string;
-  lastName: string;
-  firstName: string;
+  lastName?: string;
+  firstName?: string;
   age?: number;
 }
 
@@ -60,14 +60,25 @@ const Home = () => {
   ]);
 
   const handleDeleteButton = () => {
-    setRows(rows.filter((row) => !rowsSelected.includes(row.id)));
+    const confirmDelete = confirm("Are you sure?");
+    if (confirmDelete) {
+      setRows(rows.filter((row) => !rowsSelected.includes(row.id)));
+    }
   };
 
   const handleAddButton = () => {
+    const firstname = prompt("nombre?", "");
+    if (!firstname) return;
+    const lastname = prompt("apellido?", "");
+    if (!lastname) return;
+    const age = prompt("edad?", "18");
+    if (!age) return;
+
     const data: IRow = {
       id: uuid(),
-      lastName: "",
-      firstName: "",
+      lastName: firstname,
+      firstName: lastname,
+      age: parseInt(age, 10),
     };
     setRows([data, ...rows]);
   };
@@ -102,6 +113,7 @@ const Home = () => {
         columns={columns}
         autoHeight
         checkboxSelection
+        rowsPerPageOptions={[10, 20]}
         density="comfortable"
         onCellEditCommit={handleEditRow}
         onSelectionModelChange={handleSelectRow}
