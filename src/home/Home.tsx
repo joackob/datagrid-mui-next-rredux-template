@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Button, Container } from "@mui/material";
 import {
   DataGrid,
@@ -10,27 +10,23 @@ import {
   GridValueGetterParams,
 } from "@mui/x-data-grid";
 import { Add, Delete } from "@mui/icons-material";
-import { FormAddContext } from "../providers/FormAddProvider";
+import { v4 as uuid } from "uuid";
 
 const columns: GridColDef[] = [
-  { field: "id", headerName: "ID", width: 90 },
   {
     field: "firstName",
     headerName: "First name",
-    maxWidth: 150,
     editable: true,
   },
   {
     field: "lastName",
     headerName: "Last name",
-    width: 150,
     editable: true,
   },
   {
     field: "age",
     headerName: "Age",
     type: "number",
-    width: 110,
     editable: true,
   },
   {
@@ -38,33 +34,30 @@ const columns: GridColDef[] = [
     headerName: "Full name",
     description: "This column has a value getter and is not sortable.",
     sortable: false,
-    width: 160,
     valueGetter: (params: GridValueGetterParams) =>
       `${params.row.firstName || ""} ${params.row.lastName || ""}`,
   },
 ];
 
 interface IRow {
-  id: number;
+  id: string;
   lastName: string;
   firstName: string;
-  age: number;
+  age?: number;
 }
 
 const Home = () => {
-  const { openForm } = useContext(FormAddContext);
   const [rowsSelect, setRowsSelect] = useState<GridRowId[]>([]);
-
   const [rows, setRows] = useState<IRow[]>([
-    { id: 1, lastName: "Snow", firstName: "Jon", age: 35 },
-    { id: 2, lastName: "Lannister", firstName: "Cersei", age: 42 },
-    { id: 3, lastName: "Lannister", firstName: "Jaime", age: 45 },
-    { id: 4, lastName: "Stark", firstName: "Arya", age: 16 },
-    { id: 5, lastName: "Targaryen", firstName: "Daenerys", age: 12 },
-    { id: 6, lastName: "Melisandre", firstName: "Casa", age: 150 },
-    { id: 7, lastName: "Clifford", firstName: "Ferrara", age: 44 },
-    { id: 8, lastName: "Frances", firstName: "Rossini", age: 36 },
-    { id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
+    { id: uuid(), lastName: "Snow", firstName: "Jon", age: 35 },
+    { id: uuid(), lastName: "Lannister", firstName: "Cersei", age: 42 },
+    { id: uuid(), lastName: "Lannister", firstName: "Jaime", age: 45 },
+    { id: uuid(), lastName: "Stark", firstName: "Arya", age: 16 },
+    { id: uuid(), lastName: "Targaryen", firstName: "Daenerys", age: 12 },
+    { id: uuid(), lastName: "Melisandre", firstName: "Casa", age: 150 },
+    { id: uuid(), lastName: "Clifford", firstName: "Ferrara", age: 44 },
+    { id: uuid(), lastName: "Frances", firstName: "Rossini", age: 36 },
+    { id: uuid(), lastName: "Roxie", firstName: "Harvey", age: 65 },
   ]);
 
   const handleDeleteButton = () => {
@@ -72,7 +65,12 @@ const Home = () => {
   };
 
   const handleAddButton = () => {
-    openForm();
+    const data: IRow = {
+      id: uuid(),
+      lastName: "",
+      firstName: "",
+    };
+    setRows([data, ...rows]);
   };
 
   return (
@@ -97,6 +95,7 @@ const Home = () => {
         columns={columns}
         autoHeight
         checkboxSelection
+        density="comfortable"
         onCellEditCommit={(params: GridCellEditCommitParams) =>
           console.log(params.id, params.field, params.value)
         }
