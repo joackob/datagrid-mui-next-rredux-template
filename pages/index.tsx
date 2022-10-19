@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
-import Home from "../src/home/Home";
+import Table from "../src/table/Table";
 
 const index: NextPage = () => {
-  return <Home />;
+  return <Table />;
 };
 
 export default index;

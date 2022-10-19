@@ -1,5 +1,4 @@
 import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -9,12 +8,11 @@ import {
   Link,
   Menu,
   MenuItem,
-  Stack,
   Typography,
 } from "@mui/material";
 import { ReactNode, useState } from "react";
 import { MouseEvent } from "react";
-import MackoIcon from "../components/IconNavBar";
+import IconNavbar from "../components/IconNavbar";
 
 const NavMobile = ({
   linksLeft,
@@ -38,7 +36,7 @@ const NavMobile = ({
       <Container>
         <Toolbar>
           <Link href="/" flexGrow={1} underline="none" color="inherit">
-            <MackoIcon withBorder versionSimple={false} />
+            <IconNavbar withBorder versionSimple={false} />
           </Link>
           <IconButton
             size="large"

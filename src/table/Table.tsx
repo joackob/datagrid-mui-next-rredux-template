@@ -45,7 +45,7 @@ interface IRow {
   age: number;
 }
 
-const Home = () => {
+const Table = () => {
   const [rows, setRows] = useState<IRow[]>([
     { id: uuid(), lastName: "Snow", firstName: "Jon", age: 35 },
     { id: uuid(), lastName: "Lannister", firstName: "Cersei", age: 42 },
@@ -123,4 +123,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Table;

@@ -1,40 +1,19 @@
 import Head from "next/head";
 import { Fragment, ReactNode } from "react";
-import NavDesktop from "./NavDesktop";
 import NavMobile from "./NavMobile";
 import { Box, Stack } from "@mui/material";
-import {
-  AppRegistration,
-  Login,
-  MonetizationOn,
-  Web,
-} from "@mui/icons-material";
 
-const linksLeft = [
-  {
-    label: "Plantillas",
-    href: "/plantillas",
-    icon: <Web />,
-  },
-  {
-    label: "Precios",
-    href: "/precios",
-    icon: <MonetizationOn />,
-  },
-];
+const linksLeft: {
+  label: string;
+  href: string;
+  icon: ReactNode;
+}[] = [];
 
-const linksRight = [
-  {
-    label: "Iniciar sesión",
-    href: "/login",
-    icon: <Login />,
-  },
-  {
-    label: "Registrarse",
-    href: "/register",
-    icon: <AppRegistration />,
-  },
-];
+const linksRight: {
+  label: string;
+  href: string;
+  icon: ReactNode;
+}[] = [];
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
