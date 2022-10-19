@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { ReactNode, useState } from "react";
 import { MouseEvent } from "react";
-import IconNavbar from "../components/IconNavbar";
+import IconNavbar from "../components/IconNavBar";
 
 const NavMobile = ({
   linksLeft,
