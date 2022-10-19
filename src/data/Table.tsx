@@ -41,10 +41,8 @@ const columns: GridColDef[] = [
 ];
 
 const Table = () => {
-  const { rows }: { rows: IRow[] } = useAppSelector((state) => state.rows);
-  const { idsSelected }: { idsSelected: string[] } = useAppSelector(
-    (state) => state.idsSelected
-  );
+  const rows: IRow[] = useAppSelector((state) => state.rows);
+  const idsSelected: string[] = useAppSelector((state) => state.idsSelected);
   const dispatch = useAppDispatch();
 
   const handleAddButton = () => {
@@ -75,9 +73,7 @@ const Table = () => {
   const handleDeleteButton = () => {
     const confirmDelete = confirm("Are you sure?");
     if (confirmDelete) {
-      dispatch(
-        setRows(rows.filter((row: IRow) => !idsSelected.includes(row.id)))
-      );
+      dispatch(setRows(rows.filter((row) => !idsSelected.includes(row.id))));
     }
   };
 
