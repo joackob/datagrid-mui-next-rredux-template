@@ -1,4 +1,4 @@
-const IconNavBar = ({
+const IconNavbar = ({
   versionSimple,
   withBorder,
   className,
@@ -32,4 +32,4 @@ const IconNavBar = ({
   </div>
 );
 
-export default IconNavBar;
+export default IconNavbar;
