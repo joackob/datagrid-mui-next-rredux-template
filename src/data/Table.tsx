@@ -104,7 +104,6 @@ const Table = () => {
         columns={columns}
         autoHeight
         checkboxSelection
-        rowsPerPageOptions={[10, 20]}
         density="comfortable"
         onCellEditCommit={handleEditRow}
         onSelectionModelChange={handleSelectRow}
