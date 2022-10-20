@@ -10,7 +10,7 @@ export interface Admin {
 const admins: Admin[] = [];
 
 const adminsSlice = createSlice({
-  name: "administradores",
+  name: "admins",
   initialState: admins,
   reducers: {
     setAdmins(_, { payload: admins }: PayloadAction<Admin[]>) {
