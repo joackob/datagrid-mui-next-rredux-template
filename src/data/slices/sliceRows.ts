@@ -24,11 +24,18 @@ const rowsSlice = createSlice({
   name: "rows",
   initialState: initialState,
   reducers: {
-    setRows(_, { payload: rows }: PayloadAction<IRow[]>) {
-      return rows;
+    add(state, action: PayloadAction<IRow>) {
+      const { payload: row } = action;
+      return [row, ...state];
+    },
+    deleteMany(state, action: PayloadAction<string[]>) {
+      const { payload: idsToDelete } = action;
+      return state.filter((row) => !idsToDelete.includes(row.id));
     },
   },
 });
 
 export const rowsReducer = rowsSlice.reducer;
-export const { setRows } = rowsSlice.actions;
+// options: choice just one
+export const { add, deleteMany } = rowsSlice.actions;
+export const rows = rowsSlice.actions;
