@@ -67,7 +67,7 @@ const Table = () => {
   };
 
   const handleSelectRow = (selectionModel: GridSelectionModel) => {
-    dispatch(setIdsSelected(selectionModel));
+    dispatch(setIdsSelected(selectionModel as string[]));
   };
 
   const handleDeleteButton = () => {

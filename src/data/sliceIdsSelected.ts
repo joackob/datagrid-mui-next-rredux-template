@@ -6,7 +6,7 @@ import {
 
 const initialState: string[] = [];
 
-const options: CreateSliceOptions<string[]> = {
+const idsSelectedSlice = createSlice({
   name: "idsSelected",
   initialState: initialState,
   reducers: {
@@ -14,8 +14,7 @@ const options: CreateSliceOptions<string[]> = {
       return ids;
     },
   },
-};
+});
 
-const idsSelectedSlice = createSlice(options);
 export const idsSelectedReducer = idsSelectedSlice.reducer;
 export const { setIdsSelected } = idsSelectedSlice.actions;
