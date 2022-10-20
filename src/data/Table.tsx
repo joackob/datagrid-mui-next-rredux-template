@@ -9,7 +9,12 @@ import {
 } from "@mui/x-data-grid";
 import { Add, Delete } from "@mui/icons-material";
 import { setRows } from "./sliceRows";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
+import {
+  useAppDispatch,
+  useAppSelector,
+  selectRows,
+  selectIdsSelected,
+} from "../store/hooks";
 import { setIdsSelected } from "./sliceIdsSelected";
 import { v4 as uuid } from "uuid";
 
@@ -41,8 +46,8 @@ const columns: GridColDef[] = [
 ];
 
 const Table = () => {
-  const rows = useAppSelector((state) => state.rows);
-  const idsSelected = useAppSelector((state) => state.idsSelected);
+  const rows = useAppSelector(selectRows);
+  const idsSelected = useAppSelector(selectIdsSelected);
   const dispatch = useAppDispatch();
 
   const handleAddButton = () => {
