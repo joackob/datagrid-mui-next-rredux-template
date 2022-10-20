@@ -78,7 +78,7 @@ const Table = () => {
   };
 
   return (
-    <Container>
+    <Container sx={{ my: 2 }}>
       <Button
         startIcon={<Add />}
         className="button button-text"
