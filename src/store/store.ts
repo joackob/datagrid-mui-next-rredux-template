@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { idsSelectedReducer } from "../data/sliceIdsSelected";
-import { rowsReducer } from "../data/sliceRows";
+import { idsSelectedReducer } from "../admin/sliceIdsSelected";
+import { adminReducer } from "../admin/sliceAdmin";
 
 export const store = configureStore({
   reducer: {
     idsSelected: idsSelectedReducer,
-    rows: rowsReducer,
+    admins: adminReducer,
   },
 });
 

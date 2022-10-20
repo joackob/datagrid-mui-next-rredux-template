@@ -5,5 +5,5 @@ import type { StoreState, StoreDispatch } from "./store";
 export const useAppDispatch: () => StoreDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<StoreState> = useSelector;
 
-export const selectRows = (state: StoreState) => state.rows;
+export const selectAllAdmins = (state: StoreState) => state.admins;
 export const selectIdsSelected = (state: StoreState) => state.idsSelected;
