@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Container } from "@mui/material";
 import {
   DataGrid,
@@ -9,13 +9,7 @@ import {
 } from "@mui/x-data-grid";
 import { Add, Delete } from "@mui/icons-material";
 import { setRows } from "./sliceRows";
-import {
-  useAppDispatch,
-  useAppSelector,
-  selectRows,
-  selectIdsSelected,
-} from "../store/hooks";
-import { setIdsSelected } from "./sliceIdsSelected";
+import { useAppDispatch, useAppSelector, selectRows } from "../store/hooks";
 import { v4 as uuid } from "uuid";
 
 const columns: GridColDef[] = [
@@ -47,8 +41,8 @@ const columns: GridColDef[] = [
 
 const Table = () => {
   const rows = useAppSelector(selectRows);
-  const idsSelected = useAppSelector(selectIdsSelected);
   const dispatch = useAppDispatch();
+  const [idsSelected, setIdsSelected] = useState<GridSelectionModel>([]);
 
   const handleAddButton = () => {
     const firstName = prompt("nombre?", "");
@@ -71,8 +65,8 @@ const Table = () => {
     console.log(params);
   };
 
-  const handleSelectRow = (selectionModel: GridSelectionModel) => {
-    dispatch(setIdsSelected(selectionModel as string[]));
+  const handleSelectRow = (selection: GridSelectionModel) => {
+    setIdsSelected(selection);
   };
 
   const handleDeleteButton = () => {

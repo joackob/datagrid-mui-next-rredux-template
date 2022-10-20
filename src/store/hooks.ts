@@ -6,4 +6,3 @@ export const useAppDispatch: () => StoreDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<StoreState> = useSelector;
 
 export const selectRows = (state: StoreState) => state.rows;
-export const selectIdsSelected = (state: StoreState) => state.idsSelected;

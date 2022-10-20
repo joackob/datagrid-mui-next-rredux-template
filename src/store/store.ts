@@ -1,10 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { idsSelectedReducer } from "../data/sliceIdsSelected";
 import { rowsReducer } from "../data/sliceRows";
 
 export const store = configureStore({
   reducer: {
-    idsSelected: idsSelectedReducer,
     rows: rowsReducer,
   },
 });
