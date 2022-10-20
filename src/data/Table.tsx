@@ -8,7 +8,7 @@ import {
   GridValueGetterParams,
 } from "@mui/x-data-grid";
 import { Add, Delete } from "@mui/icons-material";
-import { setRows, IRow } from "./sliceRows";
+import { setRows } from "./sliceRows";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { setIdsSelected } from "./sliceIdsSelected";
 import { v4 as uuid } from "uuid";
@@ -53,7 +53,7 @@ const Table = () => {
     const age = prompt("edad?", "18");
     if (!age) return;
 
-    const row: IRow = {
+    const row = {
       id: uuid(),
       firstName,
       lastName,

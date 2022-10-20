@@ -1,8 +1,4 @@
-import {
-  createSlice,
-  CreateSliceOptions,
-  PayloadAction,
-} from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { v4 as uuid } from "uuid";
 
 export interface IRow {
@@ -24,7 +20,7 @@ const initialState: IRow[] = [
   { id: uuid(), lastName: "Roxie", firstName: "Harvey", age: 65 },
 ];
 
-const options: CreateSliceOptions<IRow[]> = {
+const rowsSlice = createSlice({
   name: "rows",
   initialState: initialState,
   reducers: {
@@ -32,8 +28,7 @@ const options: CreateSliceOptions<IRow[]> = {
       return rows;
     },
   },
-};
+});
 
-const rowsSlice = createSlice(options);
 export const rowsReducer = rowsSlice.reducer;
 export const { setRows } = rowsSlice.actions;
