@@ -1,7 +1,7 @@
 import { Add } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import { v4 as uuid } from "uuid";
-import { useAppDispatch } from "../../store/hooks";
+import { useAppDispatch } from "@/store/hooks";
 import { admins } from "../slices/sliceAdmins";
 
 const AddButton = () => {
