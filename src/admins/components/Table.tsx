@@ -4,54 +4,45 @@ import {
   GridCellEditCommitParams,
   GridColDef,
   GridSelectionModel,
-  GridValueGetterParams,
 } from "@mui/x-data-grid";
-import { rowsSelected } from "../slices/sliceRowsSelected";
-import { selectRows, useAppDispatch, useAppSelector } from "../../store/hooks";
+import { selectAllAdmins, useAppDispatch, useAppSelector } from "@/store/hooks";
+import { adminsSelected } from "../slices/sliceAdminsSelected";
 
 const columns: GridColDef[] = [
   {
-    field: "firstName",
-    headerName: "First name",
+    field: "nombre",
+    headerName: "Nombre",
     editable: true,
   },
   {
-    field: "lastName",
-    headerName: "Last name",
+    field: "apellido",
+    headerName: "Apellido",
     editable: true,
   },
   {
-    field: "age",
-    headerName: "Age",
-    type: "number",
+    field: "email",
+    headerName: "Correo Electronico",
     editable: true,
-  },
-  {
-    field: "fullName",
-    headerName: "Full name",
-    description: "This column has a value getter and is not sortable.",
-    sortable: false,
-    valueGetter: (params: GridValueGetterParams) =>
-      `${params.row.firstName || ""} ${params.row.lastName || ""}`,
+    minWidth: 200,
   },
 ];
 
 const Table = () => {
-  const rows = useAppSelector(selectRows);
   const dispatch = useAppDispatch();
+  const admins = useAppSelector(selectAllAdmins);
 
   const handleEditRow = (params: GridCellEditCommitParams) => {
     console.log(params);
   };
 
   const handleSelectRow = (selection: GridSelectionModel) => {
-    dispatch(rowsSelected.set(selection as string[]));
+    dispatch(adminsSelected.set(selection as string[]));
   };
 
   return (
     <>
       <DataGrid
-        rows={rows}
+        rows={admins}
         columns={columns}
         autoHeight
         checkboxSelection

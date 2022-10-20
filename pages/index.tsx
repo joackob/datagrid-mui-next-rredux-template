@@ -1,19 +1,19 @@
 import type { NextPage } from "next";
-import Table from "@/src/admin/Table";
 import axios from "axios";
-import { Admin } from "@/src/admin/sliceAdmin";
+import { Admin } from "@/src/admins/slices/sliceAdmins";
 import { useAppDispatch } from "@/src/store/hooks";
-import { setAdmins } from "@/src/admin/sliceAdmin";
+import { admins } from "@/src/admins/slices/sliceAdmins";
+import AdminsTable from "@/src/admins/AdminsTable";
 
 interface PropsNextPage {
   apiurl: string;
   admins: Admin[];
 }
 
-const Index: NextPage<PropsNextPage> = ({ apiurl, admins }) => {
+const Index: NextPage<PropsNextPage> = (props) => {
   const dispatch = useAppDispatch();
-  dispatch(setAdmins(admins));
-  return <Table />;
+  dispatch(admins.set(props.admins));
+  return <AdminsTable />;
 };
 
 export const getServerSideProps = async () => {

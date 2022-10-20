@@ -3,7 +3,7 @@ import AddButton from "./components/AddButton";
 import DeleteButton from "./components/DeleteButton";
 import Table from "./components/Table";
 
-const Data = () => {
+const AdminsTable = () => {
   return (
     <Container sx={{ my: 2 }}>
       <AddButton />
@@ -13,4 +13,4 @@ const Data = () => {
   );
 };
 
-export default Data;
+export default AdminsTable;
