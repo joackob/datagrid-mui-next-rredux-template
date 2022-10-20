@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Container } from "@mui/material";
 import {
   DataGrid,
@@ -30,6 +30,8 @@ const columns: GridColDef[] = [
 
 const Table = () => {
   const admins = useAppSelector(selectAllAdmins);
+  const [idsSelected, setIdsSelected] = useState<GridSelectionModel>();
+
   const handleAddButton = () => {
     console.log("agregar admin");
   };
@@ -38,12 +40,12 @@ const Table = () => {
     console.log(params);
   };
 
-  const handleSelectRow = (selectionModel: GridSelectionModel) => {
-    console.log(selectionModel);
+  const handleSelectRow = (idsSelected: GridSelectionModel) => {
+    setIdsSelected(idsSelected);
   };
 
   const handleDeleteButton = () => {
-    console.log("eliminar admin");
+    console.log(`se eliminaran los ids ${idsSelected}`);
   };
 
   return (
