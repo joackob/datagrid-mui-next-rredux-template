@@ -41,8 +41,8 @@ const columns: GridColDef[] = [
 ];
 
 const Table = () => {
-  const rows: IRow[] = useAppSelector((state) => state.rows);
-  const idsSelected: string[] = useAppSelector((state) => state.idsSelected);
+  const rows = useAppSelector((state) => state.rows);
+  const idsSelected = useAppSelector((state) => state.idsSelected);
   const dispatch = useAppDispatch();
 
   const handleAddButton = () => {

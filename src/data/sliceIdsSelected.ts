@@ -6,7 +6,7 @@ import {
 
 const initialState: string[] = [];
 
-const options: CreateSliceOptions = {
+const options: CreateSliceOptions<string[]> = {
   name: "idsSelected",
   initialState: initialState,
   reducers: {

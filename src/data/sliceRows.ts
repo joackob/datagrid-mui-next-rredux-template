@@ -24,7 +24,7 @@ const initialState: IRow[] = [
   { id: uuid(), lastName: "Roxie", firstName: "Harvey", age: 65 },
 ];
 
-const options: CreateSliceOptions = {
+const options: CreateSliceOptions<IRow[]> = {
   name: "rows",
   initialState: initialState,
   reducers: {
