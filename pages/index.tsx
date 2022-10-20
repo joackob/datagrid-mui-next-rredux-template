@@ -17,6 +17,7 @@ const Index: NextPage<PropsNextPage> = (props) => {
 };
 
 export const getServerSideProps = async () => {
+  // api in https://github.com/joackob/apirest-next-typeorm-template
   const apiurl = process.env.APIURL ?? "http://localhost:3000/api";
   const res = await axios.get(`${apiurl}/administradores`);
   const admins = res.status === 200 ? res.data.admins : [];
