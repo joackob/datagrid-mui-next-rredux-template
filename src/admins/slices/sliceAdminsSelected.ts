@@ -6,7 +6,7 @@ const adminsSelectedSlice = createSlice({
   name: "adminsSelected",
   initialState: initialState,
   reducers: {
-    set(_, action: PayloadAction<string[]>) {
+    selectAdmins(_, action: PayloadAction<string[]>) {
       const { payload: selected } = action;
       return selected;
     },
@@ -14,4 +14,4 @@ const adminsSelectedSlice = createSlice({
 });
 
 export const adminsSelectedReducer = adminsSelectedSlice.reducer;
-export const adminsSelected = adminsSelectedSlice.actions;
+export const { selectAdmins } = adminsSelectedSlice.actions;

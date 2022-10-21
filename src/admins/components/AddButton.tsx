@@ -21,7 +21,7 @@ const AddButton = () => {
       apellido,
       email,
     };
-    dispatch(admins.add(admin));
+    dispatch(admins.addOne(admin));
   };
 
   return (

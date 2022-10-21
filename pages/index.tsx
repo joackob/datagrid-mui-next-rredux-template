@@ -6,24 +6,23 @@ import { admins } from "@/src/admins/slices/sliceAdmins";
 import AdminsTable from "@/src/admins/AdminsTable";
 
 interface PropsNextPage {
-  apiurl: string;
   admins: Admin[];
 }
 
 const Index: NextPage<PropsNextPage> = (props) => {
   const dispatch = useAppDispatch();
-  dispatch(admins.set(props.admins));
+  dispatch(admins.setAll(props.admins));
+
   return <AdminsTable />;
 };
 
 export const getServerSideProps = async () => {
   // api in https://github.com/joackob/apirest-next-typeorm-template
-  const apiurl = process.env.APIURL ?? "http://localhost:3000/api";
+  const apiurl = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3000/api";
   const res = await axios.get(`${apiurl}/administradores`);
-  const admins = res.status === 200 ? res.data.admins : [];
+  const admins = res.status === 200 ? res.data : [];
   return {
     props: {
-      apiurl,
       admins,
     },
   };

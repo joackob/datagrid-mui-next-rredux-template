@@ -1,30 +1,27 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 
 export interface Admin {
   id: string;
   nombre: string;
   apellido: string;
   email: string;
+  url?: string;
 }
 
-const initialState: Admin[] = [];
+export const adminAdapter = createEntityAdapter<Admin>({
+  selectId: (admin: Admin) => admin.id,
+  sortComparer: (a: Admin, b: Admin) => a.id.localeCompare(b.id),
+});
 
 const adminsSlice = createSlice({
   name: "admins",
-  initialState: initialState,
+  initialState: adminAdapter.getInitialState(),
   reducers: {
-    set(_, action: PayloadAction<Admin[]>) {
-      const { payload: admins } = action;
-      return admins;
-    },
-    add(state, action: PayloadAction<Admin>) {
-      const { payload: admin } = action;
-      return [admin, ...state];
-    },
-    deleteMany(state, action: PayloadAction<string[]>) {
-      const { payload: idsToDelete } = action;
-      return state.filter((admin) => !idsToDelete.includes(admin.id));
-    },
+    addOne: adminAdapter.addOne,
+    addMany: adminAdapter.addMany,
+    removeMany: adminAdapter.removeMany,
+    setAll: adminAdapter.setAll,
+    updateMany: adminAdapter.updateMany,
   },
 });
 
