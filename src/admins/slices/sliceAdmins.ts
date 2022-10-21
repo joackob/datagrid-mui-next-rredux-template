@@ -5,25 +5,42 @@ export interface Admin {
   nombre: string;
   apellido: string;
   email: string;
+  url: string;
 }
 
-const initialState: Admin[] = [];
+export interface SliceAdmin {
+  data: Admin[];
+  apiUrlAdmin: string;
+  apiUrlAdmins: string;
+}
+
+const initialState: SliceAdmin = {
+  data: [],
+  apiUrlAdmin: "",
+  apiUrlAdmins: "",
+};
 
 const adminsSlice = createSlice({
   name: "admins",
   initialState: initialState,
   reducers: {
-    set(_, action: PayloadAction<Admin[]>) {
-      const { payload: admins } = action;
-      return admins;
+    set(_, action: PayloadAction<SliceAdmin>) {
+      const { payload: state } = action;
+      return state;
     },
     add(state, action: PayloadAction<Admin>) {
       const { payload: admin } = action;
-      return [admin, ...state];
+      return {
+        ...state,
+        data: [admin, ...state.data],
+      };
     },
     deleteMany(state, action: PayloadAction<string[]>) {
       const { payload: idsToDelete } = action;
-      return state.filter((admin) => !idsToDelete.includes(admin.id));
+      return {
+        ...state,
+        data: state.data.filter((d) => !idsToDelete.includes(d.id)),
+      };
     },
   },
 });
