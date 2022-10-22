@@ -1,8 +1,7 @@
 import { Add } from "@mui/icons-material";
 import { Button } from "@mui/material";
-import { v4 as uuid } from "uuid";
 import { useAppDispatch } from "@/store/hooks";
-import { admins } from "../slices/sliceAdmins";
+import { addAdmin } from "../slices/sliceAdmins";
 
 const AddButton = () => {
   const dispatch = useAppDispatch();
@@ -16,12 +15,11 @@ const AddButton = () => {
     if (!email) return;
 
     const admin = {
-      id: uuid(),
       nombre,
       apellido,
       email,
     };
-    dispatch(admins.addOne(admin));
+    dispatch(addAdmin(admin));
   };
 
   return (
