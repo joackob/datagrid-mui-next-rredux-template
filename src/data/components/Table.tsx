@@ -6,8 +6,8 @@ import {
   GridSelectionModel,
   GridValueGetterParams,
 } from "@mui/x-data-grid";
-import { rowsSelected } from "../slices/sliceRowsSelected";
-import { selectRows, useAppDispatch, useAppSelector } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { select } from "../slices/sliceEntity";
 
 const columns: GridColDef[] = [
   {
@@ -37,7 +37,7 @@ const columns: GridColDef[] = [
 ];
 
 const Table = () => {
-  const rows = useAppSelector(selectRows);
+  const entities = useAppSelector((state) => state.entities.entities);
   const dispatch = useAppDispatch();
 
   const handleEditRow = (params: GridCellEditCommitParams) => {
@@ -45,13 +45,13 @@ const Table = () => {
   };
 
   const handleSelectRow = (selection: GridSelectionModel) => {
-    dispatch(rowsSelected.set(selection as string[]));
+    dispatch(select(selection as string[]));
   };
 
   return (
     <>
       <DataGrid
-        rows={rows}
+        rows={entities}
         columns={columns}
         autoHeight
         checkboxSelection
