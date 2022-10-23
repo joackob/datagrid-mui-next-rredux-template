@@ -5,8 +5,9 @@ import {
   GridColDef,
   GridSelectionModel,
 } from "@mui/x-data-grid";
-import { adminsSelector, useAppDispatch, useAppSelector } from "@/store/hooks";
-import { selectAdmins } from "../slices/sliceAdminsSelected";
+import { useAppSelector } from "@/store/hooks";
+import { Alert, CircularProgress, LinearProgress } from "@mui/material";
+import { Box } from "@mui/system";
 
 const columns: GridColDef[] = [
   {
@@ -28,19 +29,21 @@ const columns: GridColDef[] = [
 ];
 
 const Table = () => {
-  const dispatch = useAppDispatch();
-  const admins = useAppSelector(adminsSelector.selectAll);
+  const admins = useAppSelector((state) => state.admins.values);
+  const status = useAppSelector((state) => state.admins.status);
 
   const handleEditRow = (params: GridCellEditCommitParams) => {
     console.log(params);
   };
 
   const handleSelectRow = (selection: GridSelectionModel) => {
-    dispatch(selectAdmins(selection as string[]));
+    console.log(selection);
   };
 
   return (
     <>
+      {status === "loading" && <CustomLinearProgress />}
+      {status === "error" && <CustomAlert />}
       <DataGrid
         rows={admins}
         columns={columns}
@@ -53,5 +56,15 @@ const Table = () => {
     </>
   );
 };
+
+const CustomLinearProgress = () => (
+  <Box sx={{ color: "var(--color-primario)" }}>
+    <LinearProgress color="inherit" />
+  </Box>
+);
+
+const CustomAlert = () => (
+  <Alert severity="error">Ups, algo no fue del todo bien!!!</Alert>
+);
 
 export default Table;

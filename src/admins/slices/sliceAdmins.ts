@@ -1,54 +1,67 @@
-import {
-  createAsyncThunk,
-  createEntityAdapter,
-  createSlice,
-  PayloadAction,
-} from "@reduxjs/toolkit";
-import { Admin } from "../interfaces";
-import { getAdmins, postAdmin, PostAdmin } from "../service";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Admin, AdminProps } from "../interfaces";
+import { getAdmins, postAdmin } from "../service";
 
-export const adminAdapter = createEntityAdapter<Admin>({
-  selectId: (admin: Admin) => admin.id,
-  sortComparer: (a: Admin, b: Admin) => a.id - b.id,
-});
+export type AdminsState = {
+  values: Admin[];
+  selected: number[];
+  status: string;
+};
+
+const initialState: AdminsState = {
+  values: [],
+  selected: [],
+  status: "loading", //can be "loading", "online", "error"
+};
 
 const adminsSlice = createSlice({
   name: "admins",
-  initialState: adminAdapter.getInitialState(),
-  reducers: {
-    addOne: adminAdapter.addOne,
-    addMany: adminAdapter.addMany,
-    removeMany: adminAdapter.removeMany,
-    setAll: adminAdapter.setAll,
-    updateMany: adminAdapter.updateMany,
-  },
+  initialState: initialState,
+  reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(
-      setAdmins.fulfilled,
-      (state, action: PayloadAction<Admin[]>) => {
-        const { payload: data } = action;
-        adminAdapter.setAll(state, data);
-      }
-    );
-    builder.addCase(
-      addAdmin.fulfilled,
-      (state, action: PayloadAction<Admin>) => {
-        const { payload: data } = action;
-        adminAdapter.addOne(state, data);
-      }
-    );
+    builder.addCase(set.fulfilled, (state, action: PayloadAction<Admin[]>) => {
+      const { payload: admins } = action;
+      return {
+        ...state,
+        values: admins,
+        status: "online",
+      };
+    });
+    builder.addCase(set.rejected, (state) => {
+      return {
+        ...state,
+        status: "error",
+      };
+    });
+    builder.addCase(set.pending, (state) => {
+      return {
+        ...state,
+        status: "loading",
+      };
+    });
+    builder.addCase(add.fulfilled, (state, action: PayloadAction<Admin>) => {
+      const { payload: admin } = action;
+      return {
+        ...state,
+        values: [admin, ...state.values],
+      };
+    });
   },
 });
 
 export const adminsReducer = adminsSlice.reducer;
-export const admins = adminsSlice.actions;
 
-export const addAdmin = createAsyncThunk(
+export const add = createAsyncThunk(
   "admin/post",
-  async (data: PostAdmin) => await postAdmin(data)
+  async (data: AdminProps) => await postAdmin(data)
 );
 
-export const setAdmins = createAsyncThunk(
+export const set = createAsyncThunk(
   "admins/get",
   async () => await getAdmins()
 );
+
+export const admins = {
+  add,
+  set,
+};

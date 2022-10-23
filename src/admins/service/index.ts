@@ -1,13 +1,8 @@
 import axios from "axios";
 import { api } from "./api";
+import { AdminProps } from "../interfaces";
 
-export interface PostAdmin {
-  nombre: string;
-  apellido: string;
-  email: string;
-}
-
-export const postAdmin = async (data: PostAdmin) => {
+export const postAdmin = async (data: AdminProps) => {
   const res = await axios.post(api.admin, { ...data });
   return {
     ...data,
