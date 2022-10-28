@@ -1,7 +1,5 @@
 import { Container } from "@mui/material";
-import AddButton from "./components/AddButton";
-import DeleteButton from "./components/DeleteButton";
-import Table from "./components/Table";
+import { AddButton, DeleteButton, Table } from "./components";
 
 const AdminsTable = () => {
   return (

@@ -1,6 +1,6 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Admin, AdminProps } from "../interfaces";
-import { getAdmins, postAdmin } from "../service";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Admin } from "../interfaces";
+import { add, set } from "../thunks";
 
 export type AdminsState = {
   values: Admin[];
@@ -50,18 +50,3 @@ const adminsSlice = createSlice({
 });
 
 export const adminsReducer = adminsSlice.reducer;
-
-export const add = createAsyncThunk(
-  "admin/post",
-  async (data: AdminProps) => await postAdmin(data)
-);
-
-export const set = createAsyncThunk(
-  "admins/get",
-  async () => await getAdmins()
-);
-
-export const admins = {
-  add,
-  set,
-};

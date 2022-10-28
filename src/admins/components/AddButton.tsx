@@ -1,7 +1,7 @@
 import { Add } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import { useAppDispatch } from "@/store/hooks";
-import { admins } from "../slices/sliceAdmins";
+import { add } from "../thunks";
 
 const AddButton = () => {
   const dispatch = useAppDispatch();
@@ -14,12 +14,7 @@ const AddButton = () => {
     const email = prompt("email?");
     if (!email) return;
 
-    const admin = {
-      nombre,
-      apellido,
-      email,
-    };
-    dispatch(admins.add(admin));
+    dispatch(add({ nombre, apellido, email }));
   };
 
   return (
