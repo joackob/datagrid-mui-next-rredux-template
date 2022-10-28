@@ -6,7 +6,7 @@ import {
   GridSelectionModel,
 } from "@mui/x-data-grid";
 import { useAppSelector } from "@/store/hooks";
-import { Alert, CircularProgress, LinearProgress } from "@mui/material";
+import { Alert, LinearProgress } from "@mui/material";
 import { Box } from "@mui/system";
 
 const columns: GridColDef[] = [
