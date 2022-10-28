@@ -8,6 +8,7 @@ import {
 import { useAppSelector } from "@/store/hooks";
 import { Alert, LinearProgress } from "@mui/material";
 import { Box } from "@mui/system";
+import { StatusStateAdmins } from "../interfaces";
 
 const columns: GridColDef[] = [
   {
@@ -42,8 +43,8 @@ const Table = () => {
 
   return (
     <>
-      {status === "loading" && <CustomLinearProgress />}
-      {status === "error" && <CustomAlert />}
+      {status === StatusStateAdmins.loading && <CustomLinearProgress />}
+      {status === StatusStateAdmins.error && <CustomAlert />}
       <DataGrid
         rows={admins}
         columns={columns}

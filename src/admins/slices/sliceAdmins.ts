@@ -1,17 +1,18 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Admin } from "../interfaces";
 import { add, set } from "../thunks";
+import { StatusStateAdmins } from "../interfaces";
 
 export type AdminsState = {
   values: Admin[];
   selected: number[];
-  status: string;
+  status: StatusStateAdmins;
 };
 
 const initialState: AdminsState = {
   values: [],
   selected: [],
-  status: "loading", //can be "loading", "online", "error"
+  status: StatusStateAdmins.loading, //can be "loading", "online", "error"
 };
 
 const adminsSlice = createSlice({
@@ -24,19 +25,19 @@ const adminsSlice = createSlice({
       return {
         ...state,
         values: admins,
-        status: "online",
+        status: StatusStateAdmins.online,
       };
     });
     builder.addCase(set.rejected, (state) => {
       return {
         ...state,
-        status: "error",
+        status: StatusStateAdmins.error,
       };
     });
     builder.addCase(set.pending, (state) => {
       return {
         ...state,
-        status: "loading",
+        status: StatusStateAdmins.loading,
       };
     });
     builder.addCase(add.fulfilled, (state, action: PayloadAction<Admin>) => {
