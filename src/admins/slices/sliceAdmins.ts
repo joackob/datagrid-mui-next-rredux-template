@@ -42,9 +42,10 @@ const adminsSlice = createSlice({
     });
     builder.addCase(add.fulfilled, (state, action: PayloadAction<Admin>) => {
       const { payload: admin } = action;
+      const exist = state.values.some((a) => a.id === admin.id);
       return {
         ...state,
-        values: [admin, ...state.values],
+        values: exist ? state.values : [admin, ...state.values],
       };
     });
   },
