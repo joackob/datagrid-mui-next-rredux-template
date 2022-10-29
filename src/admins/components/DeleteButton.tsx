@@ -1,22 +1,27 @@
+import { useAppDispatch, useAppSelector } from "@/src/store/hooks";
 import { Delete } from "@mui/icons-material";
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
+import { remove } from "../thunks";
 
 const DeleteButton = () => {
+  const selected = useAppSelector((state) => state.admins.selected);
+  const dispatch = useAppDispatch();
   const handleClick = () => {
     const confirmDelete = confirm("Are you sure?");
-    if (confirmDelete) {
-      alert("recordar implementar la función para eliminar ");
-    }
+    if (confirmDelete) dispatch(remove(selected));
   };
 
   return (
-    <Button
-      startIcon={<Delete />}
-      className="button button-text"
-      onClick={handleClick}
-    >
-      delete
-    </Button>
+    <Box display={"inline"} sx={{ color: "var(--color-primario)" }}>
+      <Button
+        startIcon={<Delete />}
+        color="inherit"
+        onClick={handleClick}
+        disabled={selected.length === 0}
+      >
+        delete
+      </Button>
+    </Box>
   );
 };
 

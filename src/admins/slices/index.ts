@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Admin } from "../interfaces";
-import { add, set } from "../thunks";
+import { add, set, remove } from "../thunks";
 import { StatusStateAdmins } from "../interfaces";
 
 export type AdminsState = {
@@ -18,7 +18,15 @@ const initialState: AdminsState = {
 const adminsSlice = createSlice({
   name: "admins",
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    select: (state, action: PayloadAction<number[]>) => {
+      const { payload: selection } = action;
+      return {
+        ...state,
+        selected: selection,
+      };
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(set.fulfilled, (state, action: PayloadAction<Admin[]>) => {
       const { payload: admins } = action;
@@ -48,7 +56,26 @@ const adminsSlice = createSlice({
         values: exist ? state.values : [admin, ...state.values],
       };
     });
+    builder.addCase(
+      remove.fulfilled,
+      (state, action: PayloadAction<number>) => {
+        const { payload: removed } = action;
+        const { values, selected } = state;
+        const opCompleted = removed === state.selected.length;
+        return opCompleted
+          ? {
+              ...state,
+              values: values.filter((admin) => !selected.includes(admin.id)),
+              selected: [],
+            }
+          : {
+              ...state,
+              status: StatusStateAdmins.error,
+            };
+      }
+    );
   },
 });
 
 export const adminsReducer = adminsSlice.reducer;
+export const { select } = adminsSlice.actions;

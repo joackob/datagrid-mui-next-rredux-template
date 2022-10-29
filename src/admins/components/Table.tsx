@@ -5,10 +5,11 @@ import {
   GridColDef,
   GridSelectionModel,
 } from "@mui/x-data-grid";
-import { useAppSelector } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { Alert, LinearProgress } from "@mui/material";
 import { Box } from "@mui/system";
 import { StatusStateAdmins } from "../interfaces";
+import { select } from "../slices";
 
 const columns: GridColDef[] = [
   {
@@ -32,13 +33,14 @@ const columns: GridColDef[] = [
 const Table = () => {
   const admins = useAppSelector((state) => state.admins.values);
   const status = useAppSelector((state) => state.admins.status);
+  const dispatch = useAppDispatch();
 
   const handleEditRow = (params: GridCellEditCommitParams) => {
     console.log(params);
   };
 
   const handleSelectRow = (selection: GridSelectionModel) => {
-    console.log(selection);
+    dispatch(select(selection as number[]));
   };
 
   return (

@@ -36,10 +36,10 @@ const AddButton = () => {
   };
 
   return (
-    <Fragment>
+    <Box display={"inline"} sx={{ color: "var(--color-primario)" }}>
       <Button
         startIcon={<Add />}
-        className="button button-text"
+        color="inherit"
         aria-describedby={id}
         onClick={handleClick}
       >
@@ -107,7 +107,7 @@ const AddButton = () => {
           </Box>
         </Card>
       </Popper>
-    </Fragment>
+    </Box>
   );
 };
 

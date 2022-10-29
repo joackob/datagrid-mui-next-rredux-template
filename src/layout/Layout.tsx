@@ -1,19 +1,7 @@
 import Head from "next/head";
 import { Fragment, ReactNode } from "react";
 import NavMobile from "./NavMobile";
-import { Box, Stack } from "@mui/material";
-
-const linksLeft: {
-  label: string;
-  href: string;
-  icon: ReactNode;
-}[] = [];
-
-const linksRight: {
-  label: string;
-  href: string;
-  icon: ReactNode;
-}[] = [];
+import { Box } from "@mui/material";
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
@@ -50,7 +38,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
             sm: 64,
           }}
         >
-          <NavMobile linksLeft={linksLeft} linksRight={linksRight} />
+          <NavMobile />
         </Box>
 
         <Box flexGrow={1}>{children}</Box>

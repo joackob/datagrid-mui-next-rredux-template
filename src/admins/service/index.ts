@@ -15,3 +15,8 @@ export const getAdmins = async () => {
   const res = await axios.get(api.admins);
   return res.data;
 };
+
+export const deleteAdmins = async (ids: number[]) => {
+  const res = await axios.delete(api.admins, { data: { ids } });
+  return res.data.removed;
+};
