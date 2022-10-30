@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import { useAppDispatch } from "@/src/store/hooks";
-import AdminsTable from "@/src/admins/AdminsTable";
+import AdminsTable from "@/src/admins";
 import { useEffect } from "react";
 import { set } from "@/src/admins/thunks";
 

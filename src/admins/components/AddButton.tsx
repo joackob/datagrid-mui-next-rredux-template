@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, MouseEvent } from "react";
+import { ChangeEvent, FormEvent, MouseEvent, useRef } from "react";
 import { Add } from "@mui/icons-material";
 import { Box, Button, Card, Popper, TextField } from "@mui/material";
 import { useAppDispatch } from "@/store/hooks";
@@ -8,31 +8,24 @@ import { AdminProps } from "../interfaces";
 
 const AddButton = () => {
   const dispatch = useAppDispatch();
-  const [anchor, setAnchor] = useState<null | HTMLElement>(null);
+  const [element, setElement] = useState<null | HTMLElement>(null);
   const handleClick = (event: MouseEvent<HTMLElement>) => {
-    setAnchor(anchor ? null : event.currentTarget);
+    setElement(element ? null : event.currentTarget);
   };
-  const open = Boolean(anchor);
-  const id = open ? "popper-id" : undefined;
+  const formOpen = Boolean(element);
+  const id = formOpen ? "popper-id" : undefined;
 
-  const [adminProps, setAdminProps] = useState<AdminProps>({
-    nombre: "",
-    apellido: "",
-    email: "",
-  });
-
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setAdminProps({
-      ...adminProps,
-      [name]: value,
-    });
-  };
+  const nameRef = useRef<HTMLInputElement>();
+  const lastnameRef = useRef<HTMLInputElement>();
+  const emailRef = useRef<HTMLInputElement>();
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    dispatch(add(adminProps));
-    setAnchor(null);
+    const nombre = nameRef.current?.value || "";
+    const apellido = lastnameRef.current?.value || "";
+    const email = emailRef.current?.value || "";
+    dispatch(add({ nombre, apellido, email }));
+    setElement(null);
   };
 
   return (
@@ -45,7 +38,12 @@ const AddButton = () => {
       >
         add
       </Button>
-      <Popper open={open} anchorEl={anchor} id={id} placement="bottom-start">
+      <Popper
+        open={formOpen}
+        anchorEl={element}
+        id={id}
+        placement="bottom-start"
+      >
         <Card variant="outlined">
           <Box
             component="form"
@@ -75,7 +73,7 @@ const AddButton = () => {
                 name="nombre"
                 required
                 type={"text"}
-                onChange={handleChange}
+                inputRef={nameRef}
               />
               <TextField
                 margin="dense"
@@ -84,7 +82,7 @@ const AddButton = () => {
                 name="apellido"
                 required
                 type={"text"}
-                onChange={handleChange}
+                inputRef={lastnameRef}
               />
               <TextField
                 margin="dense"
@@ -93,7 +91,7 @@ const AddButton = () => {
                 name="email"
                 required
                 type={"email"}
-                onChange={handleChange}
+                inputRef={emailRef}
               />
             </Box>
             <Button
