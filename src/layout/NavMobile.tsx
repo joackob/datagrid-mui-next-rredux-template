@@ -1,18 +1,7 @@
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import {
-  Container,
-  Divider,
-  Link,
-  Menu,
-  MenuItem,
-  Typography,
-} from "@mui/material";
-import { ReactNode, useState } from "react";
-import { MouseEvent } from "react";
-import IconNavbar from "../components/IconNavbar";
+import { Container, Link } from "@mui/material";
+import IconNavbar from "../components/IconNavBar";
 
 const NavMobile = () => {
   return (
