@@ -1,4 +1,4 @@
-# Landing Page with NextJS and Material UI:writing_hand:
+# Datagrid with Material UI and NextJS:writing_hand:
 
 Este template fue creado para aprender sobre NextJS y Material UI. Posee un ejemplo y en este archivo se explicara el paso a paso de ejecutarlo y continuar con su desarrollo
 
